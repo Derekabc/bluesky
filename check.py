@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from __future__ import print_function
 import traceback
+
 print("This script checks the availability of the libraries required by BlueSky, and the capabilities of your system.")
 print()
 np = sp = mpl = qt = gl = glhw = pg = False
@@ -40,12 +41,13 @@ try:
     from PyQt5.QtCore import QT_VERSION_STR
     from PyQt5.QtWidgets import QApplication
     from PyQt5.QtOpenGL import QGLWidget, QGLFormat
+
     qt = True
 except ImportError:
     print("[FAIL]")
 
 if qt:
-    print("[QT {}]" .format(QT_VERSION_STR))
+    print("[QT {}]".format(QT_VERSION_STR))
     print("Checking for pyopengl           ", end=' ')
     try:
         import OpenGL
@@ -78,10 +80,13 @@ if qt:
                 f.setDoubleBuffer(True)
                 QGLFormat.setDefaultFormat(f)
 
+
                 class GLTest(QGLWidget):
                     gl_version = 0.0
+
                     def initializeGL(self):
                         GLTest.gl_version = float(ogl.glGetString(ogl.GL_VERSION)[:3])
+
 
                 test = GLTest()
 
@@ -106,7 +111,6 @@ if qt:
         else:
             print('[OK]')
 
-
 print("Checking for pygame             ", end=' ')
 try:
     import pygame
@@ -130,6 +134,7 @@ if np and sp and mpl:
 print("Checking bluesky modules")
 try:
     import bluesky
+
     bluesky.init()
     from bluesky.ui import *
     from bluesky.stack import *

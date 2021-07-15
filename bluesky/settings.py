@@ -95,7 +95,7 @@ def init(cfgfile=''):
                 file_out.write(line)
 
     else:
-        print(f'Reading config from {cfgfile}')
+        print('Reading config from {cfgfile}')
 
     exec(compile(open(cfgfile).read(), cfgfile, 'exec'), globals())
 
@@ -181,9 +181,9 @@ def save(fname=None, changes=None):
                 allsettings.pop(allsettings.index(key))
                 value = globals()[key]
                 if isinstance(value, str):
-                    file_out.write(f'{key} = \'{value}\'\n')
+                    file_out.write('{key} = \'{value}\'\n')
                 else:
-                    file_out.write(f'{key} = {value}\n')
+                    file_out.write('{key} = {value}\n')
             else:
                 file_out.write(line)
         # Then write any remaining additional settings
@@ -191,8 +191,8 @@ def save(fname=None, changes=None):
         for key in allsettings:
             value = globals()[key]
             if isinstance(value, str):
-                file_out.write(f'{key} = \'{value}\'\n')
+                file_out.write('{key} = \'{value}\'\n')
             else:
-                file_out.write(f'{key} = {value}\n')
+                file_out.write('{key} = {value}\n')
 
-    return True, f'Saved settings to {fname}'
+    return True, 'Saved settings to {fname}'

@@ -3,7 +3,6 @@ from bluesky import settings
 from bluesky.core import Signal
 from bluesky import stack
 
-
 # Constants
 BS_OK = 0
 BS_ARGERR = 1
@@ -44,7 +43,7 @@ def init(mode='sim', pygame=False, discovery=False, cfgfile='', scnfile=''):
     # Keep track of the gui type.
     global gui_type
     gui_type = 'pygame' if pygame else \
-               'none' if headless or mode[:3] == 'sim' else 'qtgl'
+        'none' if headless or mode[:3] == 'sim' else 'qtgl'
 
     # Load navdatabase in all versions of BlueSky
     # Only the headless server doesn't need this
@@ -88,7 +87,7 @@ def init(mode='sim', pygame=False, discovery=False, cfgfile='', scnfile=''):
         # Initialize remaining modules
         varexplorer.init()
         if scnfile:
-            stack.stack(f'IC {scnfile}')
+            stack.stack('IC {scnfile}')
 
     from bluesky.core import plugin
     plugin.init(mode)

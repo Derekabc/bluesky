@@ -21,18 +21,18 @@ def select_implementation(basename='', implname=''):
             ', '.join(replaceables)
     base = replaceables.get(basename.upper(), None)
     if not base:
-        return False, f'Replaceable {basename} not found.'
+        return False, 'Replaceable {basename} not found.'
     impls = base.derived()
     if not implname:
-        return True, f'Current implementation for {basename}: {base._generator.__name__}\n' + \
-            f'Available implementations for {basename}:\n' + \
+        return True, 'Current implementation for {basename}: {base._generator.__name__}\n' + \
+            'Available implementations for {basename}:\n' + \
             ', '.join(impls)
 
     impl = impls.get(base.__name__ if implname == 'BASE' else implname)
     if not impl:
-        return False, f'Implementation {implname} not found for replaceable {basename}.'
+        return False, 'Implementation {implname} not found for replaceable {basename}.'
     impl.select()
-    return True, f'Selected implementation {implname} for replaceable {basename}'
+    return True, 'Selected implementation {implname} for replaceable {basename}'
 
 
 class Replaceable:
